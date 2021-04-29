@@ -2,21 +2,23 @@ import React, { useEffect, useState } from 'react';
 
 const PendingOrders = () => {
 
-    const [users, setUsers] = useState([]);
+  const [orders, setOrders] = useState([]);
 
-    useEffect(() => {
-        fetch('http://localhost:5000/users')
+
+
+  useEffect(() => {
+      fetch('http://localhost:5000/pendingorders')
           .then(res => res.json())
           .then(data => {
-            setUsers(data)
-    
+              setOrders(data);
+
           })
-      },[] )
+  }, [])
 
     return (
         <div className="card dashboard-product">
         <span>Pending Orders</span>
-        <h2 className="dashboard-total-products">{users.length}</h2>
+        <h2 className="dashboard-total-products">{orders.length}</h2>
         <span className="label label-warning">Order In Process</span>Not Complete
         <div className="side-box">
           <i className="ti-signal text-warning-color" />

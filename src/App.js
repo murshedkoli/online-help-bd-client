@@ -3,7 +3,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+
 } from "react-router-dom";
 
 import Home from './Component/Home';
@@ -18,13 +18,19 @@ export const userContext = createContext();
 function App() {
   
 const [loggedInUser, setLoggedInUser] = useState({});
+console.log(loggedInUser)
+const sessionUserEmail = sessionStorage.getItem('email');
 
 useEffect(()=>{
 
-  const sessionUser = sessionStorage.getItem('user');
-  setLoggedInUser(JSON.parse(sessionUser));
+  fetch('http://localhost:5000/loggedUser?email='+ sessionUserEmail)
+          .then(res => res.json())
+          .then(data => {
+            setLoggedInUser(data)
+           
+          })
 
-},[])
+},[sessionUserEmail])
 
   return (
     <userContext.Provider value={[loggedInUser, setLoggedInUser]} >

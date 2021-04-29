@@ -1,10 +1,11 @@
 import React from 'react';
 import CompleteOrders from './CompleteOrders';
 import PendingOrders from './PendingOrders';
+import SingleOrders from './PlaceOrder/SingleOrders';
+import UpdateOrder from './PlaceOrder/UpdateOrder';
 import SingleUser from './SingleUser';
 import TotalOrders from './TotalOrders';
 import UserCount from './UserCount';
-import Users from './Users';
 
 const HomeContent = () => {
     return (
@@ -32,8 +33,8 @@ const HomeContent = () => {
         <UserCount/>
       </div>
     </div>
-    {/* 4-blocks row end */}
-    {/* 1-3-block row start */}
+   
+  <SingleOrders/>
     <SingleUser/>
     
   </div>

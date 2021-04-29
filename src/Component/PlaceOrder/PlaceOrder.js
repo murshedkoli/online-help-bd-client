@@ -8,10 +8,7 @@ const PlaceOrder = () => {
 
 
         <div>
-            <div className="loader-bg">
-                <div className="loader-bar">
-                </div>
-            </div>
+          
             <div className="wrapper">
                 {/* Navbar*/}
                 <Header />

@@ -1,7 +1,7 @@
 import React from 'react';
 import firebase from "firebase/app";
 import "firebase/auth";
-import { useHistory } from 'react-router';
+import { useHistory } from "react-router-dom";
 
 
 const firebaseConfig = {
@@ -24,9 +24,8 @@ if(!firebase.apps.length){
 
 const Login = () => {
 
-let history = useHistory();
 
-
+const history= useHistory();
 
 const handleSubmitForm = (user) => {
     const userData = {
@@ -46,9 +45,8 @@ const handleSubmitForm = (user) => {
     })
         .then(res => res.json())
         .then(data => {
-        sessionStorage.setItem('user', JSON.stringify(data));
-         history.push('/deshboard')
-         history.push('/')
+        sessionStorage.setItem('email', data.email);
+        history.push("/deshboard")
         
         })
 
@@ -66,6 +64,7 @@ const handleSubmitForm = (user) => {
 
     var user = result.user;
    handleSubmitForm(user)
+   
 
   }).catch((error) => {
   });

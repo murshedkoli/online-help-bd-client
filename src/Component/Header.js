@@ -66,6 +66,12 @@ const Header = () => {
                                         <i className="icon-size-fullscreen" />
                                     </a>
                                 </li>
+
+                                <li className="pc-rheader-submenu">
+                                    <a  className="drop icon-circle" >
+                                       Balance:  {loggedInUser.balance}
+                                    </a>
+                                </li>
                                 {/* User Menu*/}
                                 <li className="dropdown">
                                     <a href="#!" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" className="dropdown-toggle drop icon-circle drop-image">

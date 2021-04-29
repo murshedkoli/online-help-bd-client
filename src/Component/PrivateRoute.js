@@ -1,11 +1,25 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Redirect, Route } from "react-router";
 import { userContext } from "../App";
 
 function PrivateRoute({ children, ...rest }) {
 
 
-    const [loggedInUser] = useContext(userContext);
+    const [loggedInUser, setLoggedInUser] = useContext(userContext);
+    
+console.log(loggedInUser)
+const sessionUserEmail = sessionStorage.getItem('email');
+
+useEffect(()=>{
+
+  fetch('http://localhost:5000/loggedUser?email='+ sessionUserEmail)
+          .then(res => res.json())
+          .then(data => {
+            setLoggedInUser(data)
+           
+          })
+
+},[sessionUserEmail, setLoggedInUser])
 
     return (
       <Route
