@@ -1,29 +1,38 @@
 import React, { useState } from 'react';
 
-const UpdateOrder = ({ order }) => {
+const UpdateOrder = ({ order, setClickUpdate }) => {
 
-    const { name, orderNo, voterName, voterNumber, email, cost, status, _id } = order;
+const { name, orderNo, voterName, voterNumber, email, cost, status, _id,attachment } = order;
 
-    const [Orderstatus, setStatus] = useState({});
-console.log(Orderstatus)
+const [formData, setFormData] = useState({});
+
 
 const handleOnChange =(e) =>{
-const newData = {...Orderstatus}
+const newData = {...formData}
     newData[e.target.name]= e.target.value;
-    setStatus(newData);
+    setFormData(newData);
 }
 
 
+
 const updateOrderStatus=(id)=>{
+
+    const updateData={
+        orderStatus:formData.orderStatus || status,
+        idUrl:formData.idUrl || attachment,
+
+    }
+
     fetch(`http://localhost:5000/updatestatus/${id}`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(Orderstatus)
+            body: JSON.stringify(updateData)
         })
             .then(res => res.json())
             .then(data => {
                 if (data.modifiedCount > 0) {
                   alert("Order Update Successfully")
+                  setClickUpdate(false);
                 } else {
                   alert("Failed Submit Order")
                 }
@@ -54,8 +63,7 @@ const updateOrderStatus=(id)=>{
                 </select>
                 </div>
                 <div className="card-block">
-                <span style={{padding:'5px', fontSize:'20px'}}>Attachment</span>
-                <input type="file" name="" id="" />
+                    <input style={{width:'80%', padding:'5px', borderRadius:'20px'}} onBlur={handleOnChange} name="idUrl" defaultValue={attachment} type="text"/>
                 </div>
             </div>
 

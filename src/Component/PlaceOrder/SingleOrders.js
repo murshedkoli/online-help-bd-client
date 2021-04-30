@@ -30,7 +30,7 @@ const SingleOrders = () => {
                 setOrders(data.reverse());
 
             })
-    }, [])
+    }, [clickUpdate])
 
 
 
@@ -42,7 +42,7 @@ const SingleOrders = () => {
                     <div className="col-xl-12 col-lg-12">
                         <div className="card">
                             <div className="card-block">
-                                <UpdateOrder order={order} />
+                                <UpdateOrder order={order} setClickUpdate={setClickUpdate} />
                             </div>
                         </div>
                     </div>
@@ -62,6 +62,7 @@ const SingleOrders = () => {
                                             <th>User Email</th>
                                             <th>Cost</th>
                                             <th>Status</th>
+                                            <th>Attachement</th>
                                             <th>Update</th>
                                         </tr>
                                     </thead>
@@ -83,6 +84,7 @@ const SingleOrders = () => {
                                                     <td>{order.email} </td>
                                                     <td>{order.cost} </td>
                                                     <td style={{textTransform:'uppercase', color:order.status==="pending"?"red":"green"}}>{order.status} </td>
+                                                    <td >{order.status ==="complete" && <a href={order.attachment}><button className="btn btn-success">Download</button> </a>} </td>
                                                     <td> <button onClick={() => updateOrder(order._id)} className="btn btn-success">Update</button> </td>
                                                 </tr>
                                             )

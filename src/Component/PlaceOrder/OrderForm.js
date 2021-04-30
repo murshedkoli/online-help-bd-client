@@ -68,7 +68,7 @@ const completeOrder = ()=>{
         cost : 250,
         status:'pending',
         orderNo: orders.length+1,
-        attachment:''
+        attachment:'https://drive.google.com/uc?export=download&id='
     
         }
     

@@ -18,19 +18,19 @@ export const userContext = createContext();
 function App() {
   
 const [loggedInUser, setLoggedInUser] = useState({});
-console.log(loggedInUser)
-const sessionUserEmail = sessionStorage.getItem('email');
 
-useEffect(()=>{
+// const sessionUserEmail = sessionStorage.getItem('email');
 
-  fetch('http://localhost:5000/loggedUser?email='+ sessionUserEmail)
-          .then(res => res.json())
-          .then(data => {
-            setLoggedInUser(data)
+// useEffect(()=>{
+
+//   fetch('http://localhost:5000/loggedUser?email='+ sessionUserEmail)
+//           .then(res => res.json())
+//           .then(data => {
+//             setLoggedInUser(data)
            
-          })
+//           })
 
-},[sessionUserEmail])
+// },[sessionUserEmail])
 
   return (
     <userContext.Provider value={[loggedInUser, setLoggedInUser]} >
