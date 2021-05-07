@@ -17,7 +17,7 @@ const OrderForm = () => {
     const [voucher, setVoucher] = useState([]);
 
     useEffect(() => {
-        fetch('https://onlinehelpbd.herokuapp.com/orders')
+        fetch('https://onlinehelpbd.herokuapp.com/orders-for-place')
           .then(res => res.json())
           .then(data => {
             setOrders(data)

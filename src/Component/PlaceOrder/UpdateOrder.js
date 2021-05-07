@@ -61,6 +61,8 @@ const updateOrderStatus=(id)=>{
                     <option value="processing">Processing</option>
                     <option value="complete">Complete</option>
                     <option value="pending">Success</option>
+                    <option value="pending">Pending</option>
+                    <option value="pending">Refund</option>
                 </select>
                 </div>
                 <div className="card-block">
