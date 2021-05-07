@@ -58,11 +58,10 @@ const updateOrderStatus=(id)=>{
                 <span style={{padding:'5px', fontSize:'20px'}}>Status</span>
                 <select onChange={handleOnChange} name="orderStatus" style={{padding:'5px',borderRadius:'5px',width:'20%', textTransform:'uppercase'}}>
                     <option selected>{status} </option>
-                    <option value="processing">Processing</option>
-                    <option value="complete">Complete</option>
-                    <option value="pending">Success</option>
-                    <option value="pending">Pending</option>
-                    <option value="pending">Refund</option>
+                    <option value="processing">processing</option>
+                    <option value="complete">complete</option>
+                    <option value="pending">pending</option>
+                    <option value="refund">refund</option>
                 </select>
                 </div>
                 <div className="card-block">
