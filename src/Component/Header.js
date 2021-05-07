@@ -43,7 +43,7 @@ const Header = () => {
                     <ul className="top-nav">
                         <li className=" notification-menu">
                             <a href="#!" data-toggle="dropdown" aria-expanded="false" className="dropdown-toggle">
-                                <i className="icon-bell" />{loggedInUser.balance}
+                                <i className="icon-bell" />  Balance : {loggedInUser.balance}
                                 <span className="badge badge-danger header-badge">{orders.length}</span>
                             </a>
                             <ul className="dropdown-menu">
@@ -124,11 +124,11 @@ const Header = () => {
                                     </Link>
                         </li>
 
-                        <li className="pc-rheader-submenu">
+                        {/* <li className="pc-rheader-submenu">
                             <a className="drop icon-circle" >
                                 Balance:  {loggedInUser.balance}
                             </a>
-                        </li>
+                        </li> */}
                         {/* User Menu*/}
                         <li className="dropdown">
                             <a href="#!" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" className="dropdown-toggle drop icon-circle drop-image">
