@@ -59,10 +59,10 @@ const SingleRecharge = () => {
                                 <table className="table m-b-0 photo-table">
                                     <thead>
                                         <tr className="text-uppercase">
-                                            <th>User Name</th>
+                                            {loggedInUser.isAdmin && <th>User Name</th>}
                                             <th>Payment Number</th>
-                                            <th>Transection Id</th>
-                                            <th>Payment Ammount</th>
+                                            <th>Trnx Id</th>
+                                            <th>Ammount</th>
                                             <th>Status</th>
                                             {loggedInUser.isAdmin && <th>Update</th>}
                                         </tr>
@@ -74,9 +74,7 @@ const SingleRecharge = () => {
                                             orders.map((order,i) =>
                                                 <tr>
                                                    
-                                                    <th>
-                                                        {order.name}
-                                                    </th>
+                                                    {loggedInUser.isAdmin && <th>{order.name}</th>}
                                                     <td>{order.paymentNumber} 
                                                         <p><i className="icofont icofont-clock-time" />{new Date(order.rechargeDate).toDateString()}</p>
                                                     </td>

@@ -10,20 +10,20 @@ const Header = () => {
     const [loggedInUser, setLoggedInUser] = useContext(userContext);
 
     const [orders, setOrders] = useState([]);
- 
-  
-  
-  
+
+
+
+
     useEffect(() => {
-        fetch('https://onlinehelpbd.herokuapp.com/pendingorders?email='+loggedInUser.email)
+        fetch('https://onlinehelpbd.herokuapp.com/pendingorders?email=' + loggedInUser.email)
             .then(res => res.json())
             .then(data => {
                 setOrders(data);
-  
+
             })
     }, [loggedInUser.email])
 
-    const handleLogOut =()=>{
+    const handleLogOut = () => {
         sessionStorage.clear();
         setLoggedInUser({})
         history.push('/login')
@@ -32,81 +32,113 @@ const Header = () => {
 
     return (
         <header className="main-header-top hidden-print">
-                <Link to="/deshboard">
+            <Link to="/deshboard">
                 <h2 className="logo">Online Help Bd</h2>
-                </Link>
-                    <nav className="navbar navbar-static-top">
-                       
-                        <div className="navbar-custom-menu f-right">
-                            <ul className="top-nav">
-                                <li className="dropdown notification-menu">
-                                    <a href="#!" data-toggle="dropdown" aria-expanded="false" className="dropdown-toggle">
-                                        <i className="icon-bell" />
-                                        <span className="badge badge-danger header-badge">{orders.length}</span>
-                                    </a>
-                                    {/* <ul className="dropdown-menu">
-                                        <li className="not-head">You have <b className="text-primary">4</b> new notifications.</li>
-                                        <li className="bell-notification">
-                                            <a href="javascript:;" className="media">
-                                                <span className="media-left media-icon">
-                                                    <img className="img-circle" src="assets/images/avatar-1.png" alt="User Image" />
-                                                </span>
-                                                <div className="media-body"><span className="block">Lisa sent you a mail</span><span className="text-muted block-time">2min ago</span></div>
-                                            </a>
-                                        </li>
-                                        <li className="bell-notification">
-                                            <a href="javascript:;" className="media">
-                                                <span className="media-left media-icon">
-                                                    <img className="img-circle" src="assets/images/avatar-2.png" alt="User Image" />
-                                                </span>
-                                                <div className="media-body"><span className="block">Server Not Working</span><span className="text-muted block-time">20min ago</span></div>
-                                            </a>
-                                        </li>
-                                        <li className="bell-notification">
-                                            <a href="javascript:;" className="media"><span className="media-left media-icon">
-                                                <img className="img-circle" src="assets/images/avatar-3.png" alt="User Image" />
-                                            </span>
-                                                <div className="media-body"><span className="block">Transaction xyz complete</span><span className="text-muted block-time">3 hours ago</span></div></a>
-                                        </li>
-                                        <li className="not-footer">
-                                            <a href="#!">See all notifications.</a>
-                                        </li>
-                                    </ul> */}
-                                </li>
-                                
+            </Link>
+            <nav className="navbar navbar-static-top ">
 
-                                <li className="pc-rheader-submenu">
-                                    <Link to="/recharge">
-                                       Recharge Balance
+                <div className="navbar-custom-menu f-right">
+                    <ul className="top-nav">
+                        <li className=" notification-menu">
+                            <a href="#!" data-toggle="dropdown" aria-expanded="false" className="dropdown-toggle">
+                                <i className="icon-bell" />{loggedInUser.balance}
+                                <span className="badge badge-danger header-badge">{orders.length}</span>
+                            </a>
+                            <ul className="dropdown-menu">
+                                {/* <li className="not-head">You have <b className="text-primary">4</b> new notifications.</li> */}
+
+                                <li className="dropdown ">
+                            <a  >
+                                <span><img className="img-circle " src={loggedInUser.imgUrl} style={{ width: 40 }} alt="User Image" /></span>
+                                <span> <b>{loggedInUser.name}</b> </span>
+                            </a>
+                        </li>
+
+                                <li className="bell-notification">
+                                    <Link to="/">
+                                        <a className="waves-effect waves-dark">
+                                            <i className="icon-speedometer" /><span> Dashboard</span>
+                                        </a>
                                     </Link>
                                 </li>
-
-                                <li className="pc-rheader-submenu">
-                                    <a  className="drop icon-circle" >
-                                       Balance:  {loggedInUser.balance}
-                                    </a>
+                                <li className="bell-notification">
+                                    <Link to="/neworder">
+                                        <a className="waves-effect waves-dark" >
+                                            <i className="icon-plus" /><span> Place Order</span>
+                                        </a>
+                                    </Link>
                                 </li>
-                                {/* User Menu*/}
-                                <li className="dropdown">
-                                    <a href="#!" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" className="dropdown-toggle drop icon-circle drop-image">
-                                        <span><img className="img-circle " src={loggedInUser.imgUrl} style={{ width: 40 }} alt="User Image" /></span>
-                                        <span> <b>{loggedInUser.name}</b> <i className=" icofont icofont-simple-down" /></span>
-                                    </a>
-                                    <ul className="dropdown-menu settings-menu">
-                                        <li><a href="#!"><i className="icon-settings" /> Settings</a></li>
-                                        <Link to="/profile"><li><a ><i className="icon-user" /> Profile</a></li></Link>
-                                        <li><a href="#"><i className="icon-envelope-open" /> My Messages</a></li>
-                                        <li className="p-0">
-                                            <div className="dropdown-divider m-0" />
+                                {
+                                    loggedInUser.isAdmin && <li className="bell-notification">
+                                        <Link to="/users">
+                                            <a className="waves-effect waves-dark" >
+                                                <i className="icon-plus" /><span> Users</span>
+                                            </a>
+                                        </Link>
+                                    </li>
+                                }
+
+                                <li className="bell-notification">
+                                    <Link to="/update-recharge">
+                                        <a className="waves-effect waves-dark" >
+                                            {
+                                                loggedInUser.isAdmin ? <div><i className="icon-list" /><span> Recharge Order</span></div> : <div><i className="icon-list" /><span> Recharge History</span></div>
+                                            }
+                                        </a>
+                                    </Link>
+                                    {
+                                        loggedInUser.isAdmin && <li className="bell-notification">
+                                            <Link to="/addvoucher">
+                                                <a className="waves-effect waves-dark" >
+                                                    <i className="icon-list" /><span> Vouchers</span>
+
+                                                </a>
+
+                                            </Link>
                                         </li>
-                                        <li><a href="#"><i className="icon-lock" /> Lock Screen</a></li>
-                                        <li onClick={handleLogOut} ><a ><i className="icon-logout" /> Logout</a></li>
-                                    </ul>
+                                    }
+
+
+                                </li>
+                                <li className="not-footer">
+                                <li onClick={handleLogOut} ><a ><i className="icon-logout" /> Logout</a></li>
                                 </li>
                             </ul>
-                        </div>
-                    </nav>
-                </header>
+                        </li>
+
+
+                        <li className="pc-rheader-submenu">
+                            <Link to="/recharge">
+                                Recharge Balance
+                                    </Link>
+                        </li>
+
+                        <li className="pc-rheader-submenu">
+                            <a className="drop icon-circle" >
+                                Balance:  {loggedInUser.balance}
+                            </a>
+                        </li>
+                        {/* User Menu*/}
+                        <li className="dropdown">
+                            <a href="#!" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" className="dropdown-toggle drop icon-circle drop-image">
+                                <span><img className="img-circle " src={loggedInUser.imgUrl} style={{ width: 40 }} alt="User Image" /></span>
+                                <span> <b>{loggedInUser.name}</b> <i className=" icofont icofont-simple-down" /></span>
+                            </a>
+                            <ul className="dropdown-menu settings-menu">
+                                <li><a href="#!"><i className="icon-settings" /> Settings</a></li>
+                                <Link to="/profile"><li><a ><i className="icon-user" /> Profile</a></li></Link>
+                                <li><a href="#"><i className="icon-envelope-open" /> My Messages</a></li>
+                                <li className="p-0">
+                                    <div className="dropdown-divider m-0" />
+                                </li>
+                                <li><a href="#"><i className="icon-lock" /> Lock Screen</a></li>
+                                <li onClick={handleLogOut} ><a ><i className="icon-logout" /> Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
 
     );
 };

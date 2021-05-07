@@ -61,7 +61,7 @@ const [loggedInUser] = useContext(userContext)
                                             <th>Order No.</th>
                                            {loggedInUser.isAdmin &&  <th>User Name</th>}
                                             <th>Voter N.N</th>
-                                            <th>User Email</th>
+                                            {loggedInUser.isAdmin &&  <th>User Email</th>}
                                             <th>Cost</th>
                                             <th>Status</th>
                                             <th>Attachement</th>
@@ -86,7 +86,7 @@ const [loggedInUser] = useContext(userContext)
                                                     <td>{order.voterName}  {order.voterNumber}
                                                         <p><i className="icofont icofont-clock-time" />{new Date(order.OrderDate).toDateString()}</p>
                                                     </td>
-                                                    <td>{order.email} </td>
+                                                    {loggedInUser.isAdmin && <td>{order.email} </td>}
                                                     <td>{order.cost} </td>
                                                     <td style={{textTransform:'uppercase', color:order.status==="pending"?"red":"green"}}>{order.status} </td>
                                                     <td >{order.status ==="complete" && <a href={order.attachment}><button className="btn btn-success">Download</button> </a>} </td>
