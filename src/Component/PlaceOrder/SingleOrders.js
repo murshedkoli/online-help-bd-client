@@ -62,7 +62,7 @@ const [loggedInUser] = useContext(userContext)
                                            {loggedInUser.isAdmin &&  <th>User Name</th>}
                                             <th>Voter N.N</th>
                                             {loggedInUser.isAdmin &&  <th>User Email</th>}
-                                            <th>Cost</th>
+                                            {loggedInUser.isAdmin &&  <th>Cost</th>}
                                             <th>Status</th>
                                          
                                             
@@ -87,7 +87,7 @@ const [loggedInUser] = useContext(userContext)
                                                         <p><i className="icofont icofont-clock-time" />{new Date(order.OrderDate).toDateString()}</p>
                                                     </td>
                                                     {loggedInUser.isAdmin && <td>{order.email} </td>}
-                                                    <td>{order.cost} </td>
+                                                    {loggedInUser.isAdmin && <td>{order.cost} </td>}
                                                     
                                                     <td >{order.status ==="complete" ? <a href={order.attachment}><button className="btn btn-success">Download</button> </a>: order.status} </td>
                                                     {loggedInUser.isAdmin && <td> <button onClick={() => updateOrder(order._id)} className="btn btn-success">Update</button> </td>}
