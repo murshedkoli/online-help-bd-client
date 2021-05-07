@@ -2,6 +2,7 @@ import React from 'react';
 import firebase from "firebase/app";
 import "firebase/auth";
 import { useHistory } from "react-router-dom";
+import logo from '../photos/logo.png'
 
 
 const firebaseConfig = {
@@ -77,7 +78,7 @@ const handleSubmitForm = (user) => {
                         <div className="login-card card-block">
                             <form className="md-float-material">
                                 <div className="text-center">
-                                    <img src="assets/images/logo-black.png" alt="logo" />
+                                    <img style={{width:'10%'}} src={logo} alt="logo" />
                                 </div>
                                 <h3 className="text-center txt-primary">
                                     Sign In to your account

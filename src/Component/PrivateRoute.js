@@ -24,7 +24,7 @@ useEffect(()=>{
       <Route
         {...rest}
         render={({ location }) =>
-        loggedInUser!=={} ? (
+        loggedInUser!=={} && sessionUserEmail ? (
             children
           ) : (
             <Redirect
