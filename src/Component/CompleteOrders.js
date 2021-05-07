@@ -1,19 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { userContext } from '../App';
 
 const CompleteOrders = () => {
 
   const [orders, setOrders] = useState([]);
+  const [loggedInUser] = useContext(userContext);
 
 
 
   useEffect(() => {
-      fetch('http://localhost:5000/completeorders')
+      fetch('http://localhost:5000/completeorders?email='+loggedInUser.email)
           .then(res => res.json())
           .then(data => {
               setOrders(data);
 
           })
-  }, [])
+  }, [loggedInUser.email])
 
     return (
         <div className="card dashboard-product">

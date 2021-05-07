@@ -20,7 +20,7 @@ const Header = () => {
     return (
         <header className="main-header-top hidden-print">
                 <Link to="/deshboard">
-                <a  className="logo"><img className="img-fluid able-logo" src="assets/images/logo.png" alt="Theme-logo" /></a>
+                <h2 className="logo">Online Help Bd</h2>
                 </Link>
                     <nav className="navbar navbar-static-top">
                        
@@ -60,11 +60,12 @@ const Header = () => {
                                         </li>
                                     </ul>
                                 </li>
-                                {/* window screen */}
+                                
+
                                 <li className="pc-rheader-submenu">
-                                    <a href="#!" className="drop icon-circle" onclick="javascript:toggleFullScreen()">
-                                        <i className="icon-size-fullscreen" />
-                                    </a>
+                                    <Link to="/recharge">
+                                       Recharge Balance
+                                    </Link>
                                 </li>
 
                                 <li className="pc-rheader-submenu">

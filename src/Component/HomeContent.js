@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { userContext } from '../App';
 import CompleteOrders from './CompleteOrders';
 import PendingOrders from './PendingOrders';
 import SingleOrders from './PlaceOrder/SingleOrders';
-import UpdateOrder from './PlaceOrder/UpdateOrder';
 import SingleUser from './SingleUser';
 import TotalOrders from './TotalOrders';
 import UserCount from './UserCount';
 
 const HomeContent = () => {
+
+  const [loggedInUser] = useContext(userContext);
+
     return (
        <div className="content-wrapper">
   {/* Container-fluid starts */}
@@ -30,12 +33,12 @@ const HomeContent = () => {
         <CompleteOrders/>
       </div>
       <div className="col-lg-3 col-md-6">
-        <UserCount/>
+        {loggedInUser.isAdmin && <UserCount/>}
       </div>
     </div>
    
   <SingleOrders/>
-    <SingleUser/>
+    {loggedInUser.isAdmin && <SingleUser/>}
     
   </div>
 </div>

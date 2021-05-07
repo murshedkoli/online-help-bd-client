@@ -13,7 +13,7 @@ const Home = () => {
                 {/* Navbar*/}
                 <Header/>
                 {/* Side-Nav*/}
-                <Sidebar/>
+                <Sidebar deshboard='active' />
                 <HomeContent/>
             </div>
         </div>

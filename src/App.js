@@ -12,6 +12,9 @@ import { createContext, useEffect, useState } from 'react';
 import PrivateRoute from './Component/PrivateRoute';
 import UserProfile from './Component/User/UserProfile';
 import PlaceOrder from './Component/PlaceOrder/PlaceOrder';
+import Recharge from './Component/User/Recharge';
+import RechargeArea from './Component/User/RechargeArea';
+import Voucher from './Component/Voucher';
 
 export const userContext = createContext();
 
@@ -56,6 +59,18 @@ const [loggedInUser, setLoggedInUser] = useState({});
         <Route path="/login">
           <Login/>
         </Route>
+
+        <PrivateRoute path="/recharge">
+          <Recharge/>
+        </PrivateRoute>
+
+        <PrivateRoute path="/update-recharge">
+          <RechargeArea/>
+        </PrivateRoute>
+
+        <PrivateRoute path="/addvoucher">
+          <Voucher/>
+        </PrivateRoute>
 
 
       </Switch>

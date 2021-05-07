@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { userContext } from '../../App';
-import UpdateOrder from './UpdateOrder';
+import UpdateRecharge from './UpdateRecharge';
 
-const SingleOrders = () => {
+const SingleRecharge = () => {
 
-const [loggedInUser] = useContext(userContext)
+    const [loggedInUser] = useContext(userContext);
 
     const [order, setOrder] = useState([]);
 
@@ -12,12 +12,13 @@ const [loggedInUser] = useContext(userContext)
 
     const updateOrder = id => {
 
-        fetch(`http://localhost:5000/singleorder?id=` + id)
+        fetch(`http://localhost:5000/single-recharge?id=` + id)
             .then(res => res.json())
             .then(data => {
                 setOrder(data);
+                setClickUpdate(true)
             })
-        setClickUpdate(true)
+        
     }
 
 
@@ -26,13 +27,13 @@ const [loggedInUser] = useContext(userContext)
 
 
     useEffect(() => {
-        fetch('http://localhost:5000/orders?email='+loggedInUser.email)
+        fetch('http://localhost:5000/recharge-requests?email='+loggedInUser.email)
             .then(res => res.json())
             .then(data => {
                 setOrders(data.reverse());
 
             })
-    }, [clickUpdate,loggedInUser.email])
+    }, [clickUpdate, loggedInUser.email])
 
 
 
@@ -44,7 +45,7 @@ const [loggedInUser] = useContext(userContext)
                     <div className="col-xl-12 col-lg-12">
                         <div className="card">
                             <div className="card-block">
-                                <UpdateOrder order={order} setClickUpdate={setClickUpdate} />
+                                <UpdateRecharge order={order} setClickUpdate={setClickUpdate} />
                             </div>
                         </div>
                     </div>
@@ -58,39 +59,31 @@ const [loggedInUser] = useContext(userContext)
                                 <table className="table m-b-0 photo-table">
                                     <thead>
                                         <tr className="text-uppercase">
-                                            <th>Order No.</th>
-                                           {loggedInUser.isAdmin &&  <th>User Name</th>}
-                                            <th>Voter N.N</th>
-                                            <th>User Email</th>
-                                            <th>Cost</th>
+                                            <th>User Name</th>
+                                            <th>Payment Number</th>
+                                            <th>Transection Id</th>
+                                            <th>Payment Ammount</th>
                                             <th>Status</th>
-                                            <th>Attachement</th>
-                                            
-                                            {loggedInUser.isAdmin &&  <th>Update</th>}
+                                            {loggedInUser.isAdmin && <th>Update</th>}
                                         </tr>
                                     </thead>
                                     <tbody>
 
 
                                         {
-                                            orders.map((order) =>
+                                            orders.map((order,i) =>
                                                 <tr>
+                                                   
                                                     <th>
-                                                        {order.orderNo}
-                                                    </th>
-                                                    {
-                                                        loggedInUser.isAdmin && <th>
                                                         {order.name}
                                                     </th>
-                                                    }
-                                                    <td>{order.voterName}  {order.voterNumber}
-                                                        <p><i className="icofont icofont-clock-time" />{new Date(order.OrderDate).toDateString()}</p>
+                                                    <td>{order.paymentNumber} 
+                                                        <p><i className="icofont icofont-clock-time" />{new Date(order.rechargeDate).toDateString()}</p>
                                                     </td>
-                                                    <td>{order.email} </td>
-                                                    <td>{order.cost} </td>
-                                                    <td style={{textTransform:'uppercase', color:order.status==="pending"?"red":"green"}}>{order.status} </td>
-                                                    <td >{order.status ==="complete" && <a href={order.attachment}><button className="btn btn-success">Download</button> </a>} </td>
-                                                    {loggedInUser.isAdmin && <td> <button onClick={() => updateOrder(order._id)} className="btn btn-success">Update</button> </td>}
+                                                    <td>{order.trnxId} </td>
+                                                    <td>{order.paymentAmmount} </td>
+                                                    <td > {order.status=== 'Complete'? <p>{order.paymentAmmount} is added in your balance</p>: order.status }</td>
+                                                    {loggedInUser.isAdmin && <td> {order.status === 'Complete'? <p>Already Balance Added</p>: <button onClick={() => updateOrder(order._id)} className="btn btn-success">Update</button> } </td>}
                                                 </tr>
                                             )
                                         }
@@ -107,4 +100,4 @@ const [loggedInUser] = useContext(userContext)
     );
 };
 
-export default SingleOrders;
+export default SingleRecharge;

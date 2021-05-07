@@ -5,14 +5,12 @@ import { useHistory } from "react-router-dom";
 
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAo6ORRhxZDeqnZkKQ9-k9Fx3Rsrqv0ysY",
-    authDomain: "onlinehelpbd.firebaseapp.com",
-    databaseURL: "https://onlinehelpbd.firebaseio.com",
-    projectId: "onlinehelpbd",
-    storageBucket: "onlinehelpbd.appspot.com",
-    messagingSenderId: "814312985632",
-    appId: "1:814312985632:web:e987403defde2a86585845",
-    measurementId: "G-GWRP6BHM53"
+    apiKey: "AIzaSyB0JFYqNt-6l4v1KbvHiSrBEErCUjDW7RE",
+    authDomain: "myshop-8d75e.firebaseapp.com",
+    projectId: "myshop-8d75e",
+    storageBucket: "myshop-8d75e.appspot.com",
+    messagingSenderId: "737748628926",
+    appId: "1:737748628926:web:36521c44cbe465be1775ef"
   };
 
 
@@ -55,7 +53,7 @@ const handleSubmitForm = (user) => {
 
 
 
-  const loginWithFacebook =()=>{
+  const loginWithGoogle =()=>{
     var provider = new firebase.auth.GoogleAuthProvider();
 
     firebase.auth()
@@ -88,7 +86,7 @@ const handleSubmitForm = (user) => {
                                 </div>
                                 <div className="row">
                                     <div className="col-xs-10 offset-xs-1">
-                                        <button onClick={loginWithFacebook} type="button" className="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">LOGIN WITH GOOGLE</button>
+                                        <button onClick={loginWithGoogle} type="button" className="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">LOGIN WITH GOOGLE</button>
                                     </div>
                                 </div>
                             </form>

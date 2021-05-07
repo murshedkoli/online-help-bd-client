@@ -7,7 +7,6 @@ function PrivateRoute({ children, ...rest }) {
 
 const [loggedInUser, setLoggedInUser] = useContext(userContext);
     
-console.log(loggedInUser)
 const sessionUserEmail = sessionStorage.getItem('email');
 
 useEffect(()=>{
@@ -25,7 +24,7 @@ useEffect(()=>{
       <Route
         {...rest}
         render={({ location }) =>
-        sessionUserEmail ? (
+        loggedInUser!=={} ? (
             children
           ) : (
             <Redirect

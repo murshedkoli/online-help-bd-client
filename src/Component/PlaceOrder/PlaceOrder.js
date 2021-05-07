@@ -13,7 +13,7 @@ const PlaceOrder = () => {
                 {/* Navbar*/}
                 <Header />
                 {/* Side-Nav*/}
-                <Sidebar />
+                <Sidebar neworder='active' />
                 <div className="content-wrapper">
                     {/* Container-fluid starts */}
                     {/* Main content starts */}

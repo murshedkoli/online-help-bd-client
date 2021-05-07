@@ -3,15 +3,16 @@ import { userContext } from '../../App';
 
 const OrderForm = () => {
 
-    const [loggedInUser, setLoggedInUser] = useContext(userContext);
+    const [loggedInUser] = useContext(userContext);
 
     const [submitOrder, setSubmitOrder] = useState(false);
-    console.log(submitOrder)
+    
 
     const [orderData, setOrderData] = useState({});
     
-
     const [orders, setOrders] = useState([]);
+
+    const [voucher, setVoucher] = useState([]);
 
     useEffect(() => {
         fetch('http://localhost:5000/orders')
@@ -22,21 +23,36 @@ const OrderForm = () => {
           })
       },[] )
 
+
+
+      useEffect(() => {
+          fetch('http://localhost:5000/voucher?email='+loggedInUser.email)
+            .then(res => res.json())
+            .then(data => {
+                setVoucher(data)
+      
+            })
+        },[loggedInUser.email] )
+
     const handleOnBlur = (e)=>{
         const newData = {...orderData};
         newData[e.target.name] = e.target.value;
         setOrderData(newData);
     }
 
+const orderCost = parseInt(voucher.voucherAmmount);
+
+
+
 
 const submitData =(e)=>{
     const id =  loggedInUser._id;
 
-    if(loggedInUser.balance<250){
+    if(loggedInUser.balance<orderCost){
         alert("Your Balance Low, Please Recharge")
     }else{
         const dataForSubmission={
-            ammount:loggedInUser.balance - 250
+            ammount:loggedInUser.balance - orderCost
         }
         fetch(`http://localhost:5000/confirm/${id}`, {
             method: 'PATCH',
@@ -65,7 +81,7 @@ const completeOrder = ()=>{
         voterNumber :orderData.voterNumber,
         email:loggedInUser.email,
         name:loggedInUser.name,
-        cost : 250,
+        cost : orderCost,
         status:'pending',
         orderNo: orders.length+1,
         attachment:'https://drive.google.com/uc?export=download&id='
@@ -100,7 +116,7 @@ const completeOrder = ()=>{
 
         <div className="form-group">
             <label htmlFor="cost" className="form-control-label">Order Cost</label>
-            <input onBlur={handleOnBlur} type="number" className="form-control" name="cost" value="250" readOnly required />
+            <input onBlur={handleOnBlur} type="number" className="form-control" name="cost" value={orderCost} readOnly required />
         </div>
 
         <button type="submit" className="btn btn-success waves-effect waves-light">Submit Order</button>
