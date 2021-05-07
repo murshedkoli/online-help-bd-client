@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import swal from 'sweetalert';
 
 const UpdateRecharge = ({ order, setClickUpdate }) => {
 
@@ -39,10 +40,10 @@ const updateOrderStatus=(id)=>{
             .then(res => res.json())
             .then(data => {
                 if (data.modifiedCount > 0) {
-                  alert("Order Update Successfully")
+                    swal("Congratulations!", "Balance Added Successfully!", "success");
                   setClickUpdate(false);
                 } else {
-                  alert("Failed Submit Order")
+                    swal("Balance Add Failed!", "Please Check the Problem and solv it!", "warning");
                 }
 
             })

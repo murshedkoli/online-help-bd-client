@@ -4,6 +4,7 @@ import Sidebar from '../Sidebar';
 import SingleRecharge from './SingleRecharge';
 
 const RechargeArea = () => {
+    document.title="Recharge History | Online Help Bd";
     return (
         <div>
           

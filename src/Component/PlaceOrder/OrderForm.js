@@ -1,7 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
+import swal from 'sweetalert';
 import { userContext } from '../../App';
 
 const OrderForm = () => {
+    document.title="Home Page | Online Help Bd";
 
     const [loggedInUser] = useContext(userContext);
 
@@ -40,7 +42,7 @@ const OrderForm = () => {
         setOrderData(newData);
     }
 
-const orderCost = parseInt(voucher.voucherAmmount);
+const orderCost = parseInt(voucher.voucherAmmount) || 250;
 
 
 
@@ -49,7 +51,8 @@ const submitData =(e)=>{
     const id =  loggedInUser._id;
 
     if(loggedInUser.balance<orderCost){
-        alert("Your Balance Low, Please Recharge")
+        swal("Low Balance!", "Please Recharge You Balance!", "warning");
+
     }else{
         const dataForSubmission={
             ammount:loggedInUser.balance - orderCost
@@ -64,7 +67,7 @@ const submitData =(e)=>{
                 if (data.modifiedCount > 0) {
                     completeOrder();
                 } else {
-                  alert("Failed Submit Order")
+                    swal("Failed to Submit!", "Please Try Again!", "warning");
                 }
 
             })

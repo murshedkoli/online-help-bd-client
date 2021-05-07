@@ -3,6 +3,9 @@ import Header from './Header';
 import Sidebar from './Sidebar';
 
 const NotFoundPage = () => {
+
+    document.title="Page Not Found | Online Help Bd";
+
     return (
         <div>
           

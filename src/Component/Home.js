@@ -4,6 +4,9 @@ import HomeContent from './HomeContent';
 import Sidebar from './Sidebar';
 
 const Home = () => {
+
+    document.title="Deshboard | Online Help Bd";
+
     return (
 
 

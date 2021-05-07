@@ -4,6 +4,9 @@ import Sidebar from '../Sidebar';
 import RechargeBalance from './RechargeBalance';
 
 const Recharge = () => {
+
+    document.title="Recharge You Balance | Online Help Bd";
+
     return (
         <div>
           
