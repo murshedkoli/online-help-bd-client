@@ -15,6 +15,8 @@ import PlaceOrder from './Component/PlaceOrder/PlaceOrder';
 import Recharge from './Component/User/Recharge';
 import RechargeArea from './Component/User/RechargeArea';
 import Voucher from './Component/Voucher';
+import UserList from './Component/UserList';
+import NotFoundPage from './Component/NotFoundPage';
 
 export const userContext = createContext();
 
@@ -71,6 +73,14 @@ const [loggedInUser, setLoggedInUser] = useState({});
         <PrivateRoute path="/addvoucher">
           <Voucher/>
         </PrivateRoute>
+
+        <PrivateRoute path="/users">
+          <UserList/>
+        </PrivateRoute>
+
+        <Route path="/*">
+          <NotFoundPage/>
+        </Route>
 
 
       </Switch>

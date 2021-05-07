@@ -27,21 +27,23 @@ const Sidebar = ({voucher, deshboard, neworder, user, allorders, recharge}) => {
                                 </Link>
                             </li>
 
-                            <li className={`treeview ${user}`}>
-                                <Link>
+                            {
+                                loggedInUser.isAdmin && <li className={`treeview ${user}`}>
+                                <Link to="/users">
                                 <a className="waves-effect waves-dark" >
-                                    <i className="icon-plus" /><span> Add User</span>
+                                    <i className="icon-plus" /><span> Users</span>
                                 </a>
                                 </Link>
                             </li>
+                            }
 
-                            <li className={`treeview ${allorders}`}>
+                            {/* <li className={`treeview ${allorders}`}>
                                 <Link>
                                 <a className="waves-effect waves-dark" >
                                     <i className="icon-list" /><span> All Orders</span>
                                 </a>
                                 </Link>
-                            </li>
+                            </li> */}
 
                             <li className={`treeview ${recharge}`}>
                                 <Link to="/update-recharge">

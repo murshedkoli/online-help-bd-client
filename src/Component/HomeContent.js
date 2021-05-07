@@ -38,7 +38,7 @@ const HomeContent = () => {
         </div>
 
         <SingleOrders />
-        {loggedInUser.isAdmin && <SingleUser />}
+       
 
       </div>
     </div>
