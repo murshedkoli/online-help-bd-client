@@ -3,7 +3,6 @@ import { userContext } from '../App';
 import CompleteOrders from './CompleteOrders';
 import PendingOrders from './PendingOrders';
 import SingleOrders from './PlaceOrder/SingleOrders';
-import SingleUser from './SingleUser';
 import TotalOrders from './TotalOrders';
 import UserCount from './UserCount';
 

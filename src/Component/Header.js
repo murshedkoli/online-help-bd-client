@@ -47,21 +47,21 @@ const Header = () => {
                             <ul className="dropdown-menu">
                                 {/* <li className="not-head">You have <b className="text-primary">4</b> new notifications.</li> */}
 
-                                <li className="dropdown ">
-                            <a  >
-                                <span><img className="img-circle " src={loggedInUser.imgUrl} style={{ width: 40 }} alt="User Image" /></span>
-                                <span> <b>{loggedInUser.name}</b> </span>
-                            </a>
-                        </li>
+                                <li className="not-footer ">
+                                    <a  >
+                                        <span><img className="img-circle " src={loggedInUser.imgUrl} style={{ width: 40 }} alt="User Image" /></span>
+                                        <span> <b>{loggedInUser.name}</b> </span>
+                                    </a>
+                                </li>
 
-                                <li className="bell-notification">
+                                <li className="not-footer">
                                     <Link to="/">
                                         <a className="waves-effect waves-dark">
                                             <i className="icon-speedometer" /><span> Dashboard</span>
                                         </a>
                                     </Link>
                                 </li>
-                                <li className="bell-notification">
+                                <li className="not-footer">
                                     <Link to="/neworder">
                                         <a className="waves-effect waves-dark" >
                                             <i className="icon-plus" /><span> Place Order</span>
@@ -69,7 +69,7 @@ const Header = () => {
                                     </Link>
                                 </li>
                                 {
-                                    loggedInUser.isAdmin && <li className="bell-notification">
+                                    loggedInUser.isAdmin && <li className="not-footer">
                                         <Link to="/users">
                                             <a className="waves-effect waves-dark" >
                                                 <i className="icon-plus" /><span> Users</span>
@@ -78,7 +78,7 @@ const Header = () => {
                                     </li>
                                 }
 
-                                <li className="bell-notification">
+                                <li className="not-footer">
                                     <Link to="/update-recharge">
                                         <a className="waves-effect waves-dark" >
                                             {
@@ -87,7 +87,7 @@ const Header = () => {
                                         </a>
                                     </Link>
                                     {
-                                        loggedInUser.isAdmin && <li className="bell-notification">
+                                        loggedInUser.isAdmin && <li className="not-footer">
                                             <Link to="/addvoucher">
                                                 <a className="waves-effect waves-dark" >
                                                     <i className="icon-list" /><span> Vouchers</span>
@@ -101,7 +101,7 @@ const Header = () => {
 
                                 </li>
                                 <li className="not-footer">
-                                <li onClick={handleLogOut} ><a ><i className="icon-logout" /> Logout</a></li>
+                                    <li onClick={handleLogOut} ><a ><i className="icon-logout" /> Logout</a></li>
                                 </li>
                             </ul>
                         </li>
