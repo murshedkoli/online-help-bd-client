@@ -64,7 +64,7 @@ const [loggedInUser] = useContext(userContext)
                                             {loggedInUser.isAdmin &&  <th>User Email</th>}
                                             <th>Cost</th>
                                             <th>Status</th>
-                                            <th>Attachement</th>
+                                         
                                             
                                             {loggedInUser.isAdmin &&  <th>Update</th>}
                                         </tr>
@@ -88,8 +88,8 @@ const [loggedInUser] = useContext(userContext)
                                                     </td>
                                                     {loggedInUser.isAdmin && <td>{order.email} </td>}
                                                     <td>{order.cost} </td>
-                                                    <td style={{textTransform:'uppercase', color:order.status==="pending"?"red":"green"}}>{order.status} </td>
-                                                    <td >{order.status ==="complete" && <a href={order.attachment}><button className="btn btn-success">Download</button> </a>} </td>
+                                                    
+                                                    <td >{order.status ==="complete" ? <a href={order.attachment}><button className="btn btn-success">Download</button> </a>: order.status} </td>
                                                     {loggedInUser.isAdmin && <td> <button onClick={() => updateOrder(order._id)} className="btn btn-success">Update</button> </td>}
                                                 </tr>
                                             )
