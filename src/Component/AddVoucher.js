@@ -29,7 +29,7 @@ const completeOrder = (e)=>{
         }
     
     
-        fetch('http://localhost:5000/newvoucher', {
+        fetch('https://onlinehelpbd.herokuapp.com/newvoucher', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(newOrder)

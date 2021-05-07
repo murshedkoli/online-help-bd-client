@@ -26,7 +26,7 @@ const [loggedInUser, setLoggedInUser] = useState({});
 
 // useEffect(()=>{
 
-//   fetch('http://localhost:5000/loggedUser?email='+ sessionUserEmail)
+//   fetch('https://onlinehelpbd.herokuapp.com/loggedUser?email='+ sessionUserEmail)
 //           .then(res => res.json())
 //           .then(data => {
 //             setLoggedInUser(data)

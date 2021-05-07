@@ -6,7 +6,7 @@ const VoucherList = () => {
     
 
     useEffect(() => {
-        fetch('http://localhost:5000/vouchers')
+        fetch('https://onlinehelpbd.herokuapp.com/vouchers')
             .then(res => res.json())
             .then(data => {
                 setVouchers(data.reverse());

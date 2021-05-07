@@ -11,7 +11,7 @@ const sessionUserEmail = sessionStorage.getItem('email');
 
 useEffect(()=>{
 
-  fetch('http://localhost:5000/loggedUser?email='+ sessionUserEmail)
+  fetch('https://onlinehelpbd.herokuapp.com/loggedUser?email='+ sessionUserEmail)
           .then(res => res.json())
           .then(data => {
             setLoggedInUser(data)

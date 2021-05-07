@@ -6,12 +6,12 @@ import logo from '../photos/logo.png'
 
 
 const firebaseConfig = {
-    apiKey: "AIzaSyB0JFYqNt-6l4v1KbvHiSrBEErCUjDW7RE",
-    authDomain: "myshop-8d75e.firebaseapp.com",
-    projectId: "myshop-8d75e",
-    storageBucket: "myshop-8d75e.appspot.com",
-    messagingSenderId: "737748628926",
-    appId: "1:737748628926:web:36521c44cbe465be1775ef"
+    apiKey: "AIzaSyAXzrQUw6Pc0YVotrY2hnsaxYdqVTlx_Uo",
+    authDomain: "online-help-bd.firebaseapp.com",
+    projectId: "online-help-bd",
+    storageBucket: "online-help-bd.appspot.com",
+    messagingSenderId: "184714899899",
+    appId: "1:184714899899:web:5a564c573fa6dec0aa149e"
   };
 
 
@@ -37,7 +37,7 @@ const handleSubmitForm = (user) => {
     }
 
    
-    fetch('http://localhost:5000/adduser', {
+    fetch('https://onlinehelpbd.herokuapp.com/adduser', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(userData)

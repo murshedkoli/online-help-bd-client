@@ -9,7 +9,7 @@ const CompleteOrders = () => {
 
 
   useEffect(() => {
-      fetch('http://localhost:5000/completeorders?email='+loggedInUser.email)
+      fetch('https://onlinehelpbd.herokuapp.com/completeorders?email='+loggedInUser.email)
           .then(res => res.json())
           .then(data => {
               setOrders(data);

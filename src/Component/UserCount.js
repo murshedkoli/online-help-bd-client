@@ -5,7 +5,7 @@ const UserCount = () => {
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/users')
+        fetch('https://onlinehelpbd.herokuapp.com/users')
           .then(res => res.json())
           .then(data => {
             setUsers(data)

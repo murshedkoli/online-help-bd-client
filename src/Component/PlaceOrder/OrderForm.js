@@ -15,7 +15,7 @@ const OrderForm = () => {
     const [voucher, setVoucher] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/orders')
+        fetch('https://onlinehelpbd.herokuapp.com/orders')
           .then(res => res.json())
           .then(data => {
             setOrders(data)
@@ -26,7 +26,7 @@ const OrderForm = () => {
 
 
       useEffect(() => {
-          fetch('http://localhost:5000/voucher?email='+loggedInUser.email)
+          fetch('https://onlinehelpbd.herokuapp.com/voucher?email='+loggedInUser.email)
             .then(res => res.json())
             .then(data => {
                 setVoucher(data)
@@ -54,7 +54,7 @@ const submitData =(e)=>{
         const dataForSubmission={
             ammount:loggedInUser.balance - orderCost
         }
-        fetch(`http://localhost:5000/confirm/${id}`, {
+        fetch(`https://onlinehelpbd.herokuapp.com/confirm/${id}`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(dataForSubmission)
@@ -89,7 +89,7 @@ const completeOrder = ()=>{
         }
     
     
-        fetch('http://localhost:5000/neworder', {
+        fetch('https://onlinehelpbd.herokuapp.com/neworder', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(newOrder)

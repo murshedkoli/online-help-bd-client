@@ -33,7 +33,7 @@ const submitData = (e)=>{
         }
     
     
-        fetch('http://localhost:5000/recharge-request', {
+        fetch('https://onlinehelpbd.herokuapp.com/recharge-request', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(newOrder)

@@ -8,7 +8,7 @@ const [user, setUser] = useState({});
 
 useEffect(()=>{
 
-    fetch(`http://localhost:5000/single-user?email=` + email)
+    fetch(`https://onlinehelpbd.herokuapp.com/single-user?email=` + email)
     .then(res => res.json())
     .then(data => {
         setUser(data);
@@ -31,7 +31,7 @@ const updateOrderStatus=(id)=>{
 
     }
 
-    fetch(`http://localhost:5000/update-recharge/${id}`, {
+    fetch(`https://onlinehelpbd.herokuapp.com/update-recharge/${id}`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(updateData)

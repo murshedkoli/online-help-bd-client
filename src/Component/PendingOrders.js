@@ -9,7 +9,7 @@ const PendingOrders = () => {
 
 
   useEffect(() => {
-      fetch('http://localhost:5000/pendingorders?email='+loggedInUser.email)
+      fetch('https://onlinehelpbd.herokuapp.com/pendingorders?email='+loggedInUser.email)
           .then(res => res.json())
           .then(data => {
               setOrders(data);

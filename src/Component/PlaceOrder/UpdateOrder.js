@@ -23,7 +23,7 @@ const updateOrderStatus=(id)=>{
 
     }
 
-    fetch(`http://localhost:5000/updatestatus/${id}`, {
+    fetch(`https://onlinehelpbd.herokuapp.com/updatestatus/${id}`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(updateData)

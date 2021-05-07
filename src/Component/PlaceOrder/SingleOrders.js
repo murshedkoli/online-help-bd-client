@@ -12,7 +12,7 @@ const [loggedInUser] = useContext(userContext)
 
     const updateOrder = id => {
 
-        fetch(`http://localhost:5000/singleorder?id=` + id)
+        fetch(`https://onlinehelpbd.herokuapp.com/singleorder?id=` + id)
             .then(res => res.json())
             .then(data => {
                 setOrder(data);
@@ -26,7 +26,7 @@ const [loggedInUser] = useContext(userContext)
 
 
     useEffect(() => {
-        fetch('http://localhost:5000/orders?email='+loggedInUser.email)
+        fetch('https://onlinehelpbd.herokuapp.com/orders?email='+loggedInUser.email)
             .then(res => res.json())
             .then(data => {
                 setOrders(data.reverse());
