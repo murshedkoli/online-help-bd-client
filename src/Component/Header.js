@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
 import { userContext } from '../App';
+import './Header.css';
 
 const Header = () => {
 
@@ -30,6 +31,7 @@ const Header = () => {
     }
 
 
+
     return (
         <header className="main-header-top hidden-print">
             <Link to="/deshboard">
@@ -54,52 +56,61 @@ const Header = () => {
                                     </a>
                                 </li>
 
-                                <li className="not-footer">
+                                <li className="not-footer  ">
                                     <Link to="/">
-                                        <a className="waves-effect waves-dark">
-                                            <i className="icon-speedometer" /><span> Dashboard</span>
+                                        <a className="waves-effect waves-dark mobilemenuli">
+                                            <i className="icon-speedometer" /> <span>Dashboard</span>
                                         </a>
                                     </Link>
                                 </li>
-                                <li className="not-footer">
+                                <li className="not-footer ">
                                     <Link to="/neworder">
-                                        <a className="waves-effect waves-dark" >
+                                        <a className="waves-effect waves-dark mobilemenuli" >
                                             <i className="icon-plus" /><span> Place Order</span>
                                         </a>
                                     </Link>
                                 </li>
                                 {
-                                    loggedInUser.isAdmin && <li className="not-footer">
+                                    loggedInUser.isAdmin && <li className="not-footer ">
                                         <Link to="/users">
-                                            <a className="waves-effect waves-dark" >
+                                            <a className="waves-effect waves-dark mobilemenuli" >
                                                 <i className="icon-plus" /><span> Users</span>
                                             </a>
                                         </Link>
                                     </li>
                                 }
 
-                                <li className="not-footer">
+                                <li className="not-footer ">
+                                    <Link to="/recharge">
+                                        <a className="waves-effect waves-dark mobilemenuli" >
+                                            <i className="icon-plus" /><span> Recharge Balance</span>
+                                        </a>
+                                    </Link>
+                                </li>
+
+                                <li className="not-footer ">
                                     <Link to="/update-recharge">
-                                        <a className="waves-effect waves-dark" >
+                                        <a className="waves-effect waves-dark mobilemenuli" >
                                             {
                                                 loggedInUser.isAdmin ? <div><i className="icon-list" /><span> Recharge Order</span></div> : <div><i className="icon-list" /><span> Recharge History</span></div>
                                             }
                                         </a>
                                     </Link>
-                                    {
-                                        loggedInUser.isAdmin && <li className="not-footer">
-                                            <Link to="/addvoucher">
-                                                <a className="waves-effect waves-dark" >
-                                                    <i className="icon-list" /><span> Vouchers</span>
-
-                                                </a>
-
-                                            </Link>
-                                        </li>
-                                    }
-
 
                                 </li>
+
+
+                                {
+                                    loggedInUser.isAdmin && <li className="not-footer ">
+                                        <Link to="/addvoucher">
+                                            <a className="waves-effect waves-dark mobilemenuli" >
+                                                <i className="icon-list" /><span> Vouchers</span>
+
+                                            </a>
+
+                                        </Link>
+                                    </li>
+                                }
                                 <li className="not-footer">
                                     <li onClick={handleLogOut} ><a ><i className="icon-logout" /> Logout</a></li>
                                 </li>

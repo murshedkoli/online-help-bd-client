@@ -1,0 +1,17 @@
+
+.mobilemenuli{
+    width: 100%;
+    background-color: #39444e;
+    
+}
+
+.mobilemenuli span, .mobilemenuli i{
+    color: white;
+}
+
+.width100{
+    color: black;
+}
+.mobilemenuli:hover{
+    background-color: rgba(22, 20, 20, 0.76);
+}
