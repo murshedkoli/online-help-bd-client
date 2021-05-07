@@ -12,7 +12,7 @@ const SingleRecharge = () => {
 
     const updateOrder = id => {
 
-        fetch(`http://localhost:5000/single-recharge?id=` + id)
+        fetch(`https://onlinehelpbd.herokuapp.com/single-recharge?id=` + id)
             .then(res => res.json())
             .then(data => {
                 setOrder(data);
@@ -27,7 +27,7 @@ const SingleRecharge = () => {
 
 
     useEffect(() => {
-        fetch('http://localhost:5000/recharge-requests?email='+loggedInUser.email)
+        fetch('https://onlinehelpbd.herokuapp.com/recharge-requests?email='+loggedInUser.email)
             .then(res => res.json())
             .then(data => {
                 setOrders(data.reverse());

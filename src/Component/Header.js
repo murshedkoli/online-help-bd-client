@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
 import { userContext } from '../App';
@@ -9,6 +9,19 @@ const Header = () => {
 
     const [loggedInUser, setLoggedInUser] = useContext(userContext);
 
+    const [orders, setOrders] = useState([]);
+ 
+  
+  
+  
+    useEffect(() => {
+        fetch('https://onlinehelpbd.herokuapp.com/pendingorders?email='+loggedInUser.email)
+            .then(res => res.json())
+            .then(data => {
+                setOrders(data);
+  
+            })
+    }, [loggedInUser.email])
 
     const handleLogOut =()=>{
         sessionStorage.clear();
@@ -29,9 +42,9 @@ const Header = () => {
                                 <li className="dropdown notification-menu">
                                     <a href="#!" data-toggle="dropdown" aria-expanded="false" className="dropdown-toggle">
                                         <i className="icon-bell" />
-                                        <span className="badge badge-danger header-badge">9</span>
+                                        <span className="badge badge-danger header-badge">{orders.length}</span>
                                     </a>
-                                    <ul className="dropdown-menu">
+                                    {/* <ul className="dropdown-menu">
                                         <li className="not-head">You have <b className="text-primary">4</b> new notifications.</li>
                                         <li className="bell-notification">
                                             <a href="javascript:;" className="media">
@@ -58,7 +71,7 @@ const Header = () => {
                                         <li className="not-footer">
                                             <a href="#!">See all notifications.</a>
                                         </li>
-                                    </ul>
+                                    </ul> */}
                                 </li>
                                 
 
