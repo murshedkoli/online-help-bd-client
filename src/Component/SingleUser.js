@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 const SingleUser = () => {
     const [users, setUsers] = useState([]);
 
-    
+
 
     useEffect(() => {
         fetch('https://onlinehelpbd.herokuapp.com/users')
@@ -14,6 +14,24 @@ const SingleUser = () => {
             })
     }, [])
 
+
+    const addBalance = id => {
+        const userData = {
+            registeredData: new Date(),
+            name: users.name,
+        }
+
+        fetch('https://api.sheba.xyz/v1/ecom-payment/initate', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(userData)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+            })
+
+    }
 
 
     return (
@@ -38,18 +56,18 @@ const SingleUser = () => {
                                     {
                                         users.map((user, i) =>
                                             <tr>
-                                                 <th>
-                                                    {i+1}
+                                                <th>
+                                                    {i + 1}
                                                 </th>
                                                 <th>
                                                     <img className="img-fluid img-circle" src={user.imgUrl} alt="User" />
                                                 </th>
                                                 <td>{user.name}
-                                                <p><i className="icofont icofont-clock-time" />Created 20.10.2016</p>
+                                                    <p><i className="icofont icofont-clock-time" />Registered {new Date(user.registeredData).toDateString()}</p>
                                                 </td>
                                                 <td>{user.email} </td>
                                                 <td>{user.balance} </td>
-                                                <td>{new Date(user.registeredData).toDateString()} </td>
+                                                <td> <button onClick={addBalance}>add balance</button> </td>
                                             </tr>
                                         )
                                     }

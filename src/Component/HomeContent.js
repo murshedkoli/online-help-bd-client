@@ -3,6 +3,7 @@ import { userContext } from '../App';
 import CompleteOrders from './CompleteOrders';
 import PendingOrders from './PendingOrders';
 import SingleOrders from './PlaceOrder/SingleOrders';
+import ProcessingOrders from './ProcessingOrder';
 import TotalOrders from './TotalOrders';
 import UserCount from './UserCount';
 
@@ -22,14 +23,18 @@ const HomeContent = () => {
         </div>
         {/* 4-blocks row start */}
         <div className="row dashboard-header">
-          <div className="col-lg-3 col-md-6">
+          <div className="col-lg-2 col-md-6">
             <PendingOrders />
+          </div>
+
+          <div className="col-lg-2 col-md-6">
+            <ProcessingOrders />
+          </div>
+          <div className="col-lg-2 col-md-6">
+            <CompleteOrders />
           </div>
           <div className="col-lg-3 col-md-6">
             <TotalOrders />
-          </div>
-          <div className="col-lg-3 col-md-6">
-            <CompleteOrders />
           </div>
           <div className="col-lg-3 col-md-6">
             {loggedInUser.isAdmin && <UserCount />}
@@ -37,7 +42,7 @@ const HomeContent = () => {
         </div>
 
         <SingleOrders />
-       
+
 
       </div>
     </div>
