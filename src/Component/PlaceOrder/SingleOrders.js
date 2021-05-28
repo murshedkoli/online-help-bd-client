@@ -23,7 +23,7 @@ const SingleOrders = () => {
     }
 
     const deleteOrder = id => {
-        fetch(`http://localhost:5000/deleteorder?id=` + id)
+        fetch(`https://onlinehelpbd.herokuapp.com/deleteorder?id=` + id)
             .then(res => res.json())
             .then(data => {
                 if (data.deletedCount > 0) {
