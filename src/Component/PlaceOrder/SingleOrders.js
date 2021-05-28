@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from 'react';
 import swal from 'sweetalert';
 import { userContext } from '../../App';
 import UpdateOrder from './UpdateOrder';
+import Swal from 'sweetalert2'
+
 
 const SingleOrders = () => {
 
@@ -22,15 +24,36 @@ const SingleOrders = () => {
         setClickUpdate(true)
     }
 
+
+    const deleteConfirm = (id) => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                deleteOrder(id)
+                Swal.fire(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                )
+            }
+        })
+
+    }
+
     const deleteOrder = id => {
         fetch(`https://onlinehelpbd.herokuapp.com/deleteorder?id=` + id)
             .then(res => res.json())
             .then(data => {
                 if (data.deletedCount > 0) {
-                    swal("Good job!", "Order Was Deleted Succefully!", "success");
                     setDeletes(!deletes)
                 } else {
-                    swal("Oh!", "Order Was Not Deleted Succefully!", "warning");
                 }
             })
     }
@@ -109,7 +132,7 @@ const SingleOrders = () => {
 
                                                     <td >{order.status === "complete" ? <a href={order.attachment}><button className="btn btn-success">Download</button> </a> : <button className="btn btn-outline-danger">{order.status}</button>} </td>
                                                     {loggedInUser.isAdmin && <td> <button onClick={() => updateOrder(order._id)} className="btn btn-success">Update</button> </td>}
-                                                    {loggedInUser.isAdmin && order.status === "pending" && <td> <button onClick={() => deleteOrder(order._id)} className="btn btn-danger">Delete</button> </td>}
+                                                    {loggedInUser.isAdmin && order.status === "pending" && <td> <button onClick={() => deleteConfirm(order._id)} className="btn btn-danger">Delete</button> </td>}
 
                                                 </tr>
                                             )
