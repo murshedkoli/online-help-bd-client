@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import swal from 'sweetalert';
 import { userContext } from '../../App';
 import UpdateOrder from './UpdateOrder';
 
@@ -9,6 +10,7 @@ const SingleOrders = () => {
     const [order, setOrder] = useState([]);
 
     const [clickUpdate, setClickUpdate] = useState(false)
+    const [deletes, setDeletes] = useState(false)
 
     const updateOrder = id => {
 
@@ -18,6 +20,19 @@ const SingleOrders = () => {
                 setOrder(data);
             })
         setClickUpdate(true)
+    }
+
+    const deleteOrder = id => {
+        fetch(`http://localhost:5000/deleteorder?id=` + id)
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount > 0) {
+                    swal("Good job!", "Order Was Deleted Succefully!", "success");
+                    setDeletes(!deletes)
+                } else {
+                    swal("Oh!", "Order Was Not Deleted Succefully!", "warning");
+                }
+            })
     }
 
 
@@ -32,7 +47,7 @@ const SingleOrders = () => {
                 setOrders(data.reverse());
 
             })
-    }, [clickUpdate, loggedInUser.email])
+    }, [clickUpdate, loggedInUser.email, deletes])
 
 
 
@@ -62,10 +77,11 @@ const SingleOrders = () => {
                                             {loggedInUser.isAdmin && <th>User Name</th>}
                                             <th>Voter N.N</th>
                                             <th>Payment Info</th>
-                                            {loggedInUser.isAdmin && <th>User Email</th>}
+                                            {/* {loggedInUser.isAdmin && <th>User Email</th>} */}
                                             {loggedInUser.isAdmin && <th>Cost</th>}
                                             <th>Status</th>
                                             {loggedInUser.isAdmin && <th>Update</th>}
+                                            {loggedInUser.isAdmin && <th>Delete</th>}
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -88,11 +104,13 @@ const SingleOrders = () => {
                                                     <td>
                                                         {order.orderAmmount} <br />{order.trnxNumber}
                                                     </td>
-                                                    {loggedInUser.isAdmin && <td>{order.email} </td>}
+                                                    {/* {loggedInUser.isAdmin && <td>{order.email} </td>} */}
                                                     {loggedInUser.isAdmin && <td>{order.cost} </td>}
 
-                                                    <td >{order.status === "complete" ? <a href={order.attachment}><button className="btn btn-success">Download</button> </a> : order.status} </td>
+                                                    <td >{order.status === "complete" ? <a href={order.attachment}><button className="btn btn-success">Download</button> </a> : <button className="btn btn-outline-danger">{order.status}</button>} </td>
                                                     {loggedInUser.isAdmin && <td> <button onClick={() => updateOrder(order._id)} className="btn btn-success">Update</button> </td>}
+                                                    {loggedInUser.isAdmin && order.status === "pending" && <td> <button onClick={() => deleteOrder(order._id)} className="btn btn-danger">Delete</button> </td>}
+
                                                 </tr>
                                             )
                                         }
