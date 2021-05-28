@@ -4,7 +4,7 @@ import UpdateOrder from './UpdateOrder';
 
 const SingleOrders = () => {
 
-const [loggedInUser] = useContext(userContext)
+    const [loggedInUser] = useContext(userContext)
 
     const [order, setOrder] = useState([]);
 
@@ -26,13 +26,13 @@ const [loggedInUser] = useContext(userContext)
 
 
     useEffect(() => {
-        fetch('https://onlinehelpbd.herokuapp.com/orders?email='+loggedInUser.email)
+        fetch('https://onlinehelpbd.herokuapp.com/orders?email=' + loggedInUser.email)
             .then(res => res.json())
             .then(data => {
                 setOrders(data.reverse());
 
             })
-    }, [clickUpdate,loggedInUser.email])
+    }, [clickUpdate, loggedInUser.email])
 
 
 
@@ -59,14 +59,13 @@ const [loggedInUser] = useContext(userContext)
                                     <thead>
                                         <tr className="text-uppercase">
                                             <th>Order No.</th>
-                                           {loggedInUser.isAdmin &&  <th>User Name</th>}
+                                            {loggedInUser.isAdmin && <th>User Name</th>}
                                             <th>Voter N.N</th>
-                                            {loggedInUser.isAdmin &&  <th>User Email</th>}
-                                            {loggedInUser.isAdmin &&  <th>Cost</th>}
+                                            <th>Payment Info</th>
+                                            {loggedInUser.isAdmin && <th>User Email</th>}
+                                            {loggedInUser.isAdmin && <th>Cost</th>}
                                             <th>Status</th>
-                                         
-                                            
-                                            {loggedInUser.isAdmin &&  <th>Update</th>}
+                                            {loggedInUser.isAdmin && <th>Update</th>}
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -80,16 +79,19 @@ const [loggedInUser] = useContext(userContext)
                                                     </th>
                                                     {
                                                         loggedInUser.isAdmin && <th>
-                                                        {order.name}
-                                                    </th>
+                                                            {order.name}
+                                                        </th>
                                                     }
                                                     <td>{order.voterName}  {order.voterNumber}
                                                         <p><i className="icofont icofont-clock-time" />{new Date(order.OrderDate).toDateString()}</p>
                                                     </td>
+                                                    <td>
+                                                        {order.orderAmmount} <br />{order.trnxNumber}
+                                                    </td>
                                                     {loggedInUser.isAdmin && <td>{order.email} </td>}
                                                     {loggedInUser.isAdmin && <td>{order.cost} </td>}
-                                                    
-                                                    <td >{order.status ==="complete" ? <a href={order.attachment}><button className="btn btn-success">Download</button> </a>: order.status} </td>
+
+                                                    <td >{order.status === "complete" ? <a href={order.attachment}><button className="btn btn-success">Download</button> </a> : order.status} </td>
                                                     {loggedInUser.isAdmin && <td> <button onClick={() => updateOrder(order._id)} className="btn btn-success">Update</button> </td>}
                                                 </tr>
                                             )
