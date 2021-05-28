@@ -125,7 +125,7 @@ const SingleOrders = () => {
                                                         <p><i className="icofont icofont-clock-time" />{new Date(order.OrderDate).toDateString()}</p>
                                                     </td>
                                                     <td>
-                                                        {order.orderAmmount} <br />{order.trnxNumber}
+                                                        Cost : {order.orderAmmount} <br />Trnx : {order.trnxNumber}
                                                     </td>
                                                     {/* {loggedInUser.isAdmin && <td>{order.email} </td>} */}
                                                     {loggedInUser.isAdmin && <td>{order.cost} </td>}
