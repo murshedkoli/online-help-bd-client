@@ -126,6 +126,7 @@ const OrderForm = () => {
             {
                 loggedInUser.balance < orderCost &&
                 <div>
+                    <h3>Bkash Marchent: 01914 74 39 21</h3>
                     <div className="form-group">
                         <label htmlFor="voterNumber" className="form-control-label">Recharge Ammount</label>
                         <input onBlur={handleOnBlur} type="number" className="form-control" name="orderAmmount" placeholder="Recharge Ammount" required />
