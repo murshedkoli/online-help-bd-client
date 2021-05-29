@@ -37,6 +37,78 @@ const Header = () => {
             <Link to="/deshboard">
                 <h2 className="logo">Online Help Bd</h2>
             </Link>
+            <a href="#!" data-toggle="dropdown" aria-expanded="false" >
+                <i className="icon-menu logo" style={{ color: 'white', fontSize: '20px', backgroundColor: '#39444e' }} />
+
+            </a>
+            <ul className="dropdown-menu" style={{ width: '100%', }}>
+                {/* <li className="not-head">You have <b className="text-primary">4</b> new notifications.</li> */}
+
+                <li className="not-footer link ">
+                    <a >
+                        <span><img className="img-circle " src={loggedInUser.imgUrl} style={{ width: 40 }} alt="User Image" /></span>
+                        <span> <b>{loggedInUser.name}</b> </span>
+                    </a>
+                </li>
+
+                <li className="not-footer  ">
+                    <Link className="Link" to="/">
+                        <a className="waves-effect waves-dark mobilemenuli">
+                            <i style={{ marginLeft: '30px' }} className="icon-speedometer" /> <span>Dashboard</span>
+                        </a>
+                    </Link>
+                </li>
+                <li className="not-footer ">
+                    <Link className="Link" to="/neworder">
+                        <a className="waves-effect waves-dark mobilemenuli" >
+                            <i style={{ marginLeft: '30px' }} className="icon-plus" /><span> Place Order</span>
+                        </a>
+                    </Link>
+                </li>
+                {
+                    loggedInUser.isAdmin && <li className="not-footer ">
+                        <Link className="Link" to="/users">
+                            <a className="waves-effect waves-dark mobilemenuli" >
+                                <i style={{ marginLeft: '30px' }} className="icon-plus" /><span> Users</span>
+                            </a>
+                        </Link>
+                    </li>
+                }
+
+                <li className="not-footer ">
+                    <Link className="Link" to="/recharge">
+                        <a className="waves-effect waves-dark mobilemenuli" >
+                            <i style={{ marginLeft: '30px' }} className="icon-plus" /><span> Recharge Balance</span>
+                        </a>
+                    </Link>
+                </li>
+
+                <li className="not-footer ">
+                    <Link className="Link" to="/update-recharge">
+                        <a className="waves-effect waves-dark mobilemenuli" >
+                            {
+                                loggedInUser.isAdmin ? <div><i style={{ marginLeft: '30px' }} className="icon-list" /><span> Recharge Order</span></div> : <div><i className="icon-list" /><span> Recharge History</span></div>
+                            }
+                        </a>
+                    </Link>
+
+                </li>
+
+
+                {
+                    loggedInUser.isAdmin && <li className="not-footer ">
+                        <Link className="Link" to="/addvoucher">
+                            <a className="waves-effect waves-dark mobilemenuli" >
+                                <i style={{ marginLeft: '30px' }} className="icon-list" /><span> Vouchers</span>
+                            </a>
+
+                        </Link>
+                    </li>
+                }
+                <li className="not-footer">
+                    <li onClick={handleLogOut} ><a style={{ margin: '50px' }} ><i className="icon-logout" /> Logout</a></li>
+                </li>
+            </ul>
             <nav className="navbar navbar-static-top ">
 
                 <div className="navbar-custom-menu f-right">
@@ -46,75 +118,7 @@ const Header = () => {
                                 <i className="icon-bell" />  Balance : {loggedInUser.balance}
                                 <span className="badge badge-danger header-badge">{orders.length}</span>
                             </a>
-                            <ul className="dropdown-menu">
-                                {/* <li className="not-head">You have <b className="text-primary">4</b> new notifications.</li> */}
 
-                                <li className="not-footer ">
-                                    <a  >
-                                        <span><img className="img-circle " src={loggedInUser.imgUrl} style={{ width: 40 }} alt="User Image" /></span>
-                                        <span> <b>{loggedInUser.name}</b> </span>
-                                    </a>
-                                </li>
-
-                                <li className="not-footer  ">
-                                    <Link to="/">
-                                        <a className="waves-effect waves-dark mobilemenuli">
-                                            <i className="icon-speedometer" /> <span>Dashboard</span>
-                                        </a>
-                                    </Link>
-                                </li>
-                                <li className="not-footer ">
-                                    <Link to="/neworder">
-                                        <a className="waves-effect waves-dark mobilemenuli" >
-                                            <i className="icon-plus" /><span> Place Order</span>
-                                        </a>
-                                    </Link>
-                                </li>
-                                {
-                                    loggedInUser.isAdmin && <li className="not-footer ">
-                                        <Link to="/users">
-                                            <a className="waves-effect waves-dark mobilemenuli" >
-                                                <i className="icon-plus" /><span> Users</span>
-                                            </a>
-                                        </Link>
-                                    </li>
-                                }
-
-                                <li className="not-footer ">
-                                    <Link to="/recharge">
-                                        <a className="waves-effect waves-dark mobilemenuli" >
-                                            <i className="icon-plus" /><span> Recharge Balance</span>
-                                        </a>
-                                    </Link>
-                                </li>
-
-                                <li className="not-footer ">
-                                    <Link to="/update-recharge">
-                                        <a className="waves-effect waves-dark mobilemenuli" >
-                                            {
-                                                loggedInUser.isAdmin ? <div><i className="icon-list" /><span> Recharge Order</span></div> : <div><i className="icon-list" /><span> Recharge History</span></div>
-                                            }
-                                        </a>
-                                    </Link>
-
-                                </li>
-
-
-                                {
-                                    loggedInUser.isAdmin && <li className="not-footer ">
-                                        <Link to="/addvoucher">
-                                            <a className="waves-effect waves-dark mobilemenuli" >
-                                                <i className="icon-list" /><span> Vouchers</span>
-
-                                            </a>
-
-                                        </Link>
-                                    </li>
-                                }
-                                <li className="not-footer">
-                                    <li onClick={handleLogOut} ><a ><i className="icon-logout" /> Logout</a></li>
-                                </li>
-                            </ul>
                         </li>
 
 
