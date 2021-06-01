@@ -31,6 +31,35 @@ const Header = () => {
     }
 
 
+    const addbalance = () => {
+
+
+        const paymentData = {
+            amount: 500,
+            transaction_id: 'asldkjf;laskdjf',
+            success_url: 'onlinehelpbd.cf',
+            fail_url: 'onlinehelpbd.cf/fail',
+            customer_name: 'murshed',
+            customer_mobile: '01781981486',
+            purpose: 'online payment',
+            payment_details: ''
+        }
+
+        fetch('https://api.sheba.xyz/v1/ecom-payment/initiate', {
+            method: "POST",
+            headers: {
+                'client-id': '887424432',
+                'client-secret': 'sLA8bbzff7IMfT69JJlHb7QmQ06AgrmnJ9pBt9UenTblQ8QC9HV4FmvQt4iDJn0qvBJvYZPEQNayGCnY5oDkkkgqMfPFbvst810zPOwTq6VD7RRAStPN6MW6',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(paymentData)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+            })
+    }
+
 
     return (
         <header className="main-header-top hidden-print">
@@ -121,6 +150,7 @@ const Header = () => {
 
                         </li>
 
+                        <li><button onClick={addbalance}>Add balance</button></li>
 
                         <li className="pc-rheader-submenu">
                             <Link to="/recharge">
