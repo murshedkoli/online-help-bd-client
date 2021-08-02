@@ -106,7 +106,7 @@ const SingleUser = () => {
                                                 </td>
                                                 <td>{user.email} </td>
                                                 <td>{user.balance} </td>
-                                                <td> <button onClick={() => addBalance(user.email, user.name)}>add balance</button> </td>
+                                                <td> <button onClick={() => addBalance(user.email, user.name)} className="btn btn-success">add balance</button> </td>
                                             </tr>
                                         )
                                     }
