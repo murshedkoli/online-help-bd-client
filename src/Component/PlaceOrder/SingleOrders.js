@@ -96,10 +96,10 @@ const SingleOrders = () => {
                                 <table className="table m-b-0 photo-table">
                                     <thead>
                                         <tr className="text-uppercase">
-                                            <th>Order No.</th>
+                                            <th>No.</th>
                                             {loggedInUser.isAdmin && <th>User Name</th>}
                                             <th>Voter N.N</th>
-                                            <th>Payment Info</th>
+                                            <th>Payment </th>
                                             {/* {loggedInUser.isAdmin && <th>User Email</th>} */}
                                             {loggedInUser.isAdmin && <th>Cost</th>}
                                             <th>Status</th>
@@ -121,8 +121,8 @@ const SingleOrders = () => {
                                                             {order.name}
                                                         </th>
                                                     }
-                                                    <td>{order.voterName}  {order.voterNumber}
-                                                        <p><i className="icofont icofont-clock-time" />{new Date(order.OrderDate).toDateString()}</p>
+                                                    <td>{order.voterName} <br /> {order.voterNumber}
+
                                                     </td>
                                                     <td>
                                                         Cost : {order.orderAmmount} <br />Trnx : {order.trnxNumber}

@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import Swal from 'sweetalert2';
 
 const SingleUser = () => {
     const [users, setUsers] = useState([]);
 
-
+    const [notification, setNotification] = useState({
+        update: '',
+        failed: ''
+    })
 
     useEffect(() => {
         fetch('https://onlinehelpbd.herokuapp.com/users')
@@ -12,25 +16,60 @@ const SingleUser = () => {
                 setUsers(data.reverse());
 
             })
-    }, [])
+    }, [notification])
 
 
-    const addBalance = id => {
-        const userData = {
-            registeredData: new Date(),
-            name: users.name,
+
+
+    const submitBalance = (email, name, paidAmount) => {
+        const newOrder = {
+            rechargeDate: new Date(),
+            paymentNumber: 'Admin',
+            trnxId: 'Admin',
+            email: email,
+            name: name,
+            paymentAmmount: paidAmount,
+            status: 'pending',
+
         }
 
-        fetch('https://api.sheba.xyz/v1/ecom-payment/initate', {
+
+        fetch('https://onlinehelpbd.herokuapp.com/recharge-request', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(userData)
+            body: JSON.stringify(newOrder)
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
-            })
+                if (data.insertedCount) {
+                }
 
+            })
+    }
+
+
+    const addBalance = (email, name) => {
+        Swal.fire({
+            title: 'Enter Balance Ammount',
+            html: `<input type="number" id="paidAmmount" class="swal2-input" placeholder="Paid Ammount">`,
+            confirmButtonText: 'Confirm Add Balance',
+            focusConfirm: true,
+
+            preConfirm: () => {
+                const ammount = Swal.getPopup().querySelector('#paidAmmount').value
+                if (!ammount) {
+                    Swal.showValidationMessage(`Please enter Paid Ammount`)
+                }
+                const paidAmount = parseInt(ammount);
+                submitBalance(email, name, paidAmount)
+                return { ammount: paidAmount }
+            }
+        }).then((result) => {
+
+            Swal.fire(`
+               Balance Added Successfully & Ammount ${result.value.ammount} Was Added Successfully;`
+                .trim())
+        })
     }
 
 
@@ -67,7 +106,7 @@ const SingleUser = () => {
                                                 </td>
                                                 <td>{user.email} </td>
                                                 <td>{user.balance} </td>
-                                                <td> <button onClick={addBalance}>add balance</button> </td>
+                                                <td> <button onClick={() => addBalance(user.email, user.name)}>add balance</button> </td>
                                             </tr>
                                         )
                                     }

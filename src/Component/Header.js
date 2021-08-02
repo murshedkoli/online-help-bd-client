@@ -31,34 +31,7 @@ const Header = () => {
     }
 
 
-    const addbalance = () => {
 
-
-        const paymentData = {
-            amount: 500,
-            transaction_id: 'asldkjf;laskdjf',
-            success_url: 'onlinehelpbd.cf',
-            fail_url: 'onlinehelpbd.cf/fail',
-            customer_name: 'murshed',
-            customer_mobile: '01781981486',
-            purpose: 'online payment',
-            payment_details: ''
-        }
-
-        fetch('https://api.sheba.xyz/v1/ecom-payment/initiate', {
-            method: "POST",
-            headers: {
-                'client-id': '887424432',
-                'client-secret': 'sLA8bbzff7IMfT69JJlHb7QmQ06AgrmnJ9pBt9UenTblQ8QC9HV4FmvQt4iDJn0qvBJvYZPEQNayGCnY5oDkkkgqMfPFbvst810zPOwTq6VD7RRAStPN6MW6',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify(paymentData)
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
-            })
-    }
 
 
     return (
@@ -90,7 +63,7 @@ const Header = () => {
                 <li className="not-footer ">
                     <Link className="Link" to="/neworder">
                         <a className="waves-effect waves-dark mobilemenuli" >
-                            <i style={{ marginLeft: '30px' }} className="icon-plus" /><span> Place Order</span>
+                            <i style={{ marginLeft: '30px' }} className="icon-plus" /><span> Place Request</span>
                         </a>
                     </Link>
                 </li>
@@ -116,7 +89,7 @@ const Header = () => {
                     <Link className="Link" to="/update-recharge">
                         <a className="waves-effect waves-dark mobilemenuli" >
                             {
-                                loggedInUser.isAdmin ? <div><i style={{ marginLeft: '30px' }} className="icon-list" /><span> Recharge Order</span></div> : <div><i className="icon-list" /><span> Recharge History</span></div>
+                                loggedInUser.isAdmin ? <div><i style={{ marginLeft: '30px' }} className="icon-list" /><span> Recharge Request</span></div> : <div><i className="icon-list" /><span> Recharge History</span></div>
                             }
                         </a>
                     </Link>
@@ -150,12 +123,11 @@ const Header = () => {
 
                         </li>
 
-                        <li><button onClick={addbalance}>Add balance</button></li>
 
                         <li className="pc-rheader-submenu">
                             <Link to="/recharge">
                                 Recharge Balance
-                                    </Link>
+                            </Link>
                         </li>
 
                         {/* <li className="pc-rheader-submenu">
